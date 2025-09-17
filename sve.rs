@@ -29458,3 +29458,4 @@ pub unsafe fn svzip2q_u32(op1: svuint32_t, op2: svuint32_t) -> svuint32_t {
 pub unsafe fn svzip2q_u64(op1: svuint64_t, op2: svuint64_t) -> svuint64_t {
     unsafe { svzip2q_s64(op1.as_signed(), op2.as_signed()).as_unsigned() }
 }
+
