@@ -1177,7 +1177,7 @@ impl From<svbool2_t> for svbool_t {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fabd))]
-pub fn svabd_f32_m(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svfloat32_t {
+pub unsafe fn svabd_f32_m(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svfloat32_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svabd_f32_m(pg: svbool4_t, op1: svfloat32_t, op2: svfloat32_t) -> svfloat32_t;
@@ -1187,37 +1187,37 @@ pub fn svabd_f32_m(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svfloat3
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fabd))]
-pub fn svabd_n_f32_m(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svfloat32_t {
+pub unsafe fn svabd_n_f32_m(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svfloat32_t {
     svabd_f32_m(pg, op1, svdup_n_f32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fabd))]
-pub fn svabd_f32_x(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svfloat32_t {
+pub unsafe fn svabd_f32_x(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svfloat32_t {
     svabd_f32_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fabd))]
-pub fn svabd_n_f32_x(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svfloat32_t {
+pub unsafe fn svabd_n_f32_x(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svfloat32_t {
     svabd_f32_x(pg, op1, svdup_n_f32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fabd))]
-pub fn svabd_f32_z(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svfloat32_t {
+pub unsafe fn svabd_f32_z(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svfloat32_t {
     svabd_f32_m(pg, svsel_f32(pg, op1, svdup_n_f32(0.0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fabd))]
-pub fn svabd_n_f32_z(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svfloat32_t {
+pub unsafe fn svabd_n_f32_z(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svfloat32_t {
     svabd_f32_z(pg, op1, svdup_n_f32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fabd))]
-pub fn svabd_f64_m(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svfloat64_t {
+pub unsafe fn svabd_f64_m(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svfloat64_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svabd_f64_m(pg: svbool2_t, op1: svfloat64_t, op2: svfloat64_t) -> svfloat64_t;
@@ -1227,37 +1227,37 @@ pub fn svabd_f64_m(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svfloat6
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fabd))]
-pub fn svabd_n_f64_m(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svfloat64_t {
+pub unsafe fn svabd_n_f64_m(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svfloat64_t {
     svabd_f64_m(pg, op1, svdup_n_f64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fabd))]
-pub fn svabd_f64_x(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svfloat64_t {
+pub unsafe fn svabd_f64_x(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svfloat64_t {
     svabd_f64_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fabd))]
-pub fn svabd_n_f64_x(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svfloat64_t {
+pub unsafe fn svabd_n_f64_x(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svfloat64_t {
     svabd_f64_x(pg, op1, svdup_n_f64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fabd))]
-pub fn svabd_f64_z(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svfloat64_t {
+pub unsafe fn svabd_f64_z(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svfloat64_t {
     svabd_f64_m(pg, svsel_f64(pg, op1, svdup_n_f64(0.0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fabd))]
-pub fn svabd_n_f64_z(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svfloat64_t {
+pub unsafe fn svabd_n_f64_z(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svfloat64_t {
     svabd_f64_z(pg, op1, svdup_n_f64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_s8_m(pg: svbool_t, op1: svint8_t, op2: svint8_t) -> svint8_t {
+pub unsafe fn svabd_s8_m(pg: svbool_t, op1: svint8_t, op2: svint8_t) -> svint8_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svabd_s8_m(pg: svbool_t, op1: svint8_t, op2: svint8_t) -> svint8_t;
@@ -1267,37 +1267,37 @@ pub fn svabd_s8_m(pg: svbool_t, op1: svint8_t, op2: svint8_t) -> svint8_t {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_n_s8_m(pg: svbool_t, op1: svint8_t, op2: i8) -> svint8_t {
+pub unsafe fn svabd_n_s8_m(pg: svbool_t, op1: svint8_t, op2: i8) -> svint8_t {
     svabd_s8_m(pg, op1, svdup_n_s8(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_s8_x(pg: svbool_t, op1: svint8_t, op2: svint8_t) -> svint8_t {
+pub unsafe fn svabd_s8_x(pg: svbool_t, op1: svint8_t, op2: svint8_t) -> svint8_t {
     svabd_s8_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_n_s8_x(pg: svbool_t, op1: svint8_t, op2: i8) -> svint8_t {
+pub unsafe fn svabd_n_s8_x(pg: svbool_t, op1: svint8_t, op2: i8) -> svint8_t {
     svabd_s8_x(pg, op1, svdup_n_s8(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_s8_z(pg: svbool_t, op1: svint8_t, op2: svint8_t) -> svint8_t {
+pub unsafe fn svabd_s8_z(pg: svbool_t, op1: svint8_t, op2: svint8_t) -> svint8_t {
     svabd_s8_m(pg, svsel_s8(pg, op1, svdup_n_s8(0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_n_s8_z(pg: svbool_t, op1: svint8_t, op2: i8) -> svint8_t {
+pub unsafe fn svabd_n_s8_z(pg: svbool_t, op1: svint8_t, op2: i8) -> svint8_t {
     svabd_s8_z(pg, op1, svdup_n_s8(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_s16_m(pg: svbool_t, op1: svint16_t, op2: svint16_t) -> svint16_t {
+pub unsafe fn svabd_s16_m(pg: svbool_t, op1: svint16_t, op2: svint16_t) -> svint16_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svabd_s16_m(pg: svbool8_t, op1: svint16_t, op2: svint16_t) -> svint16_t;
@@ -1307,37 +1307,37 @@ pub fn svabd_s16_m(pg: svbool_t, op1: svint16_t, op2: svint16_t) -> svint16_t {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_n_s16_m(pg: svbool_t, op1: svint16_t, op2: i16) -> svint16_t {
+pub unsafe fn svabd_n_s16_m(pg: svbool_t, op1: svint16_t, op2: i16) -> svint16_t {
     svabd_s16_m(pg, op1, svdup_n_s16(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_s16_x(pg: svbool_t, op1: svint16_t, op2: svint16_t) -> svint16_t {
+pub unsafe fn svabd_s16_x(pg: svbool_t, op1: svint16_t, op2: svint16_t) -> svint16_t {
     svabd_s16_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_n_s16_x(pg: svbool_t, op1: svint16_t, op2: i16) -> svint16_t {
+pub unsafe fn svabd_n_s16_x(pg: svbool_t, op1: svint16_t, op2: i16) -> svint16_t {
     svabd_s16_x(pg, op1, svdup_n_s16(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_s16_z(pg: svbool_t, op1: svint16_t, op2: svint16_t) -> svint16_t {
+pub unsafe fn svabd_s16_z(pg: svbool_t, op1: svint16_t, op2: svint16_t) -> svint16_t {
     svabd_s16_m(pg, svsel_s16(pg, op1, svdup_n_s16(0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_n_s16_z(pg: svbool_t, op1: svint16_t, op2: i16) -> svint16_t {
+pub unsafe fn svabd_n_s16_z(pg: svbool_t, op1: svint16_t, op2: i16) -> svint16_t {
     svabd_s16_z(pg, op1, svdup_n_s16(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_s32_m(pg: svbool_t, op1: svint32_t, op2: svint32_t) -> svint32_t {
+pub unsafe fn svabd_s32_m(pg: svbool_t, op1: svint32_t, op2: svint32_t) -> svint32_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svabd_s32_m(pg: svbool4_t, op1: svint32_t, op2: svint32_t) -> svint32_t;
@@ -1347,37 +1347,37 @@ pub fn svabd_s32_m(pg: svbool_t, op1: svint32_t, op2: svint32_t) -> svint32_t {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_n_s32_m(pg: svbool_t, op1: svint32_t, op2: i32) -> svint32_t {
+pub unsafe fn svabd_n_s32_m(pg: svbool_t, op1: svint32_t, op2: i32) -> svint32_t {
     svabd_s32_m(pg, op1, svdup_n_s32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_s32_x(pg: svbool_t, op1: svint32_t, op2: svint32_t) -> svint32_t {
+pub unsafe fn svabd_s32_x(pg: svbool_t, op1: svint32_t, op2: svint32_t) -> svint32_t {
     svabd_s32_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_n_s32_x(pg: svbool_t, op1: svint32_t, op2: i32) -> svint32_t {
+pub unsafe fn svabd_n_s32_x(pg: svbool_t, op1: svint32_t, op2: i32) -> svint32_t {
     svabd_s32_x(pg, op1, svdup_n_s32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_s32_z(pg: svbool_t, op1: svint32_t, op2: svint32_t) -> svint32_t {
+pub unsafe fn svabd_s32_z(pg: svbool_t, op1: svint32_t, op2: svint32_t) -> svint32_t {
     svabd_s32_m(pg, svsel_s32(pg, op1, svdup_n_s32(0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_n_s32_z(pg: svbool_t, op1: svint32_t, op2: i32) -> svint32_t {
+pub unsafe fn svabd_n_s32_z(pg: svbool_t, op1: svint32_t, op2: i32) -> svint32_t {
     svabd_s32_z(pg, op1, svdup_n_s32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_s64_m(pg: svbool_t, op1: svint64_t, op2: svint64_t) -> svint64_t {
+pub unsafe fn svabd_s64_m(pg: svbool_t, op1: svint64_t, op2: svint64_t) -> svint64_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svabd_s64_m(pg: svbool2_t, op1: svint64_t, op2: svint64_t) -> svint64_t;
@@ -1387,37 +1387,37 @@ pub fn svabd_s64_m(pg: svbool_t, op1: svint64_t, op2: svint64_t) -> svint64_t {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_n_s64_m(pg: svbool_t, op1: svint64_t, op2: i64) -> svint64_t {
+pub unsafe fn svabd_n_s64_m(pg: svbool_t, op1: svint64_t, op2: i64) -> svint64_t {
     svabd_s64_m(pg, op1, svdup_n_s64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_s64_x(pg: svbool_t, op1: svint64_t, op2: svint64_t) -> svint64_t {
+pub unsafe fn svabd_s64_x(pg: svbool_t, op1: svint64_t, op2: svint64_t) -> svint64_t {
     svabd_s64_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_n_s64_x(pg: svbool_t, op1: svint64_t, op2: i64) -> svint64_t {
+pub unsafe fn svabd_n_s64_x(pg: svbool_t, op1: svint64_t, op2: i64) -> svint64_t {
     svabd_s64_x(pg, op1, svdup_n_s64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_s64_z(pg: svbool_t, op1: svint64_t, op2: svint64_t) -> svint64_t {
+pub unsafe fn svabd_s64_z(pg: svbool_t, op1: svint64_t, op2: svint64_t) -> svint64_t {
     svabd_s64_m(pg, svsel_s64(pg, op1, svdup_n_s64(0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(sabd))]
-pub fn svabd_n_s64_z(pg: svbool_t, op1: svint64_t, op2: i64) -> svint64_t {
+pub unsafe fn svabd_n_s64_z(pg: svbool_t, op1: svint64_t, op2: i64) -> svint64_t {
     svabd_s64_z(pg, op1, svdup_n_s64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_u8_m(pg: svbool_t, op1: svuint8_t, op2: svuint8_t) -> svuint8_t {
+pub unsafe fn svabd_u8_m(pg: svbool_t, op1: svuint8_t, op2: svuint8_t) -> svuint8_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svabd_u8_m(pg: svbool_t, op1: svint8_t, op2: svint8_t) -> svint8_t;
@@ -1427,37 +1427,37 @@ pub fn svabd_u8_m(pg: svbool_t, op1: svuint8_t, op2: svuint8_t) -> svuint8_t {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_n_u8_m(pg: svbool_t, op1: svuint8_t, op2: u8) -> svuint8_t {
+pub unsafe fn svabd_n_u8_m(pg: svbool_t, op1: svuint8_t, op2: u8) -> svuint8_t {
     svabd_u8_m(pg, op1, svdup_n_u8(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_u8_x(pg: svbool_t, op1: svuint8_t, op2: svuint8_t) -> svuint8_t {
+pub unsafe fn svabd_u8_x(pg: svbool_t, op1: svuint8_t, op2: svuint8_t) -> svuint8_t {
     svabd_u8_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_n_u8_x(pg: svbool_t, op1: svuint8_t, op2: u8) -> svuint8_t {
+pub unsafe fn svabd_n_u8_x(pg: svbool_t, op1: svuint8_t, op2: u8) -> svuint8_t {
     svabd_u8_x(pg, op1, svdup_n_u8(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_u8_z(pg: svbool_t, op1: svuint8_t, op2: svuint8_t) -> svuint8_t {
+pub unsafe fn svabd_u8_z(pg: svbool_t, op1: svuint8_t, op2: svuint8_t) -> svuint8_t {
     svabd_u8_m(pg, svsel_u8(pg, op1, svdup_n_u8(0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_n_u8_z(pg: svbool_t, op1: svuint8_t, op2: u8) -> svuint8_t {
+pub unsafe fn svabd_n_u8_z(pg: svbool_t, op1: svuint8_t, op2: u8) -> svuint8_t {
     svabd_u8_z(pg, op1, svdup_n_u8(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_u16_m(pg: svbool_t, op1: svuint16_t, op2: svuint16_t) -> svuint16_t {
+pub unsafe fn svabd_u16_m(pg: svbool_t, op1: svuint16_t, op2: svuint16_t) -> svuint16_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svabd_u16_m(pg: svbool8_t, op1: svint16_t, op2: svint16_t) -> svint16_t;
@@ -1467,37 +1467,37 @@ pub fn svabd_u16_m(pg: svbool_t, op1: svuint16_t, op2: svuint16_t) -> svuint16_t
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_n_u16_m(pg: svbool_t, op1: svuint16_t, op2: u16) -> svuint16_t {
+pub unsafe fn svabd_n_u16_m(pg: svbool_t, op1: svuint16_t, op2: u16) -> svuint16_t {
     svabd_u16_m(pg, op1, svdup_n_u16(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_u16_x(pg: svbool_t, op1: svuint16_t, op2: svuint16_t) -> svuint16_t {
+pub unsafe fn svabd_u16_x(pg: svbool_t, op1: svuint16_t, op2: svuint16_t) -> svuint16_t {
     svabd_u16_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_n_u16_x(pg: svbool_t, op1: svuint16_t, op2: u16) -> svuint16_t {
+pub unsafe fn svabd_n_u16_x(pg: svbool_t, op1: svuint16_t, op2: u16) -> svuint16_t {
     svabd_u16_x(pg, op1, svdup_n_u16(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_u16_z(pg: svbool_t, op1: svuint16_t, op2: svuint16_t) -> svuint16_t {
+pub unsafe fn svabd_u16_z(pg: svbool_t, op1: svuint16_t, op2: svuint16_t) -> svuint16_t {
     svabd_u16_m(pg, svsel_u16(pg, op1, svdup_n_u16(0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_n_u16_z(pg: svbool_t, op1: svuint16_t, op2: u16) -> svuint16_t {
+pub unsafe fn svabd_n_u16_z(pg: svbool_t, op1: svuint16_t, op2: u16) -> svuint16_t {
     svabd_u16_z(pg, op1, svdup_n_u16(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_u32_m(pg: svbool_t, op1: svuint32_t, op2: svuint32_t) -> svuint32_t {
+pub unsafe fn svabd_u32_m(pg: svbool_t, op1: svuint32_t, op2: svuint32_t) -> svuint32_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svabd_u32_m(pg: svbool4_t, op1: svint32_t, op2: svint32_t) -> svint32_t;
@@ -1507,37 +1507,37 @@ pub fn svabd_u32_m(pg: svbool_t, op1: svuint32_t, op2: svuint32_t) -> svuint32_t
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_n_u32_m(pg: svbool_t, op1: svuint32_t, op2: u32) -> svuint32_t {
+pub unsafe fn svabd_n_u32_m(pg: svbool_t, op1: svuint32_t, op2: u32) -> svuint32_t {
     svabd_u32_m(pg, op1, svdup_n_u32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_u32_x(pg: svbool_t, op1: svuint32_t, op2: svuint32_t) -> svuint32_t {
+pub unsafe fn svabd_u32_x(pg: svbool_t, op1: svuint32_t, op2: svuint32_t) -> svuint32_t {
     svabd_u32_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_n_u32_x(pg: svbool_t, op1: svuint32_t, op2: u32) -> svuint32_t {
+pub unsafe fn svabd_n_u32_x(pg: svbool_t, op1: svuint32_t, op2: u32) -> svuint32_t {
     svabd_u32_x(pg, op1, svdup_n_u32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_u32_z(pg: svbool_t, op1: svuint32_t, op2: svuint32_t) -> svuint32_t {
+pub unsafe fn svabd_u32_z(pg: svbool_t, op1: svuint32_t, op2: svuint32_t) -> svuint32_t {
     svabd_u32_m(pg, svsel_u32(pg, op1, svdup_n_u32(0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_n_u32_z(pg: svbool_t, op1: svuint32_t, op2: u32) -> svuint32_t {
+pub unsafe fn svabd_n_u32_z(pg: svbool_t, op1: svuint32_t, op2: u32) -> svuint32_t {
     svabd_u32_z(pg, op1, svdup_n_u32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_u64_m(pg: svbool_t, op1: svuint64_t, op2: svuint64_t) -> svuint64_t {
+pub unsafe fn svabd_u64_m(pg: svbool_t, op1: svuint64_t, op2: svuint64_t) -> svuint64_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svabd_u64_m(pg: svbool2_t, op1: svint64_t, op2: svint64_t) -> svint64_t;
@@ -1547,37 +1547,37 @@ pub fn svabd_u64_m(pg: svbool_t, op1: svuint64_t, op2: svuint64_t) -> svuint64_t
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_n_u64_m(pg: svbool_t, op1: svuint64_t, op2: u64) -> svuint64_t {
+pub unsafe fn svabd_n_u64_m(pg: svbool_t, op1: svuint64_t, op2: u64) -> svuint64_t {
     svabd_u64_m(pg, op1, svdup_n_u64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_u64_x(pg: svbool_t, op1: svuint64_t, op2: svuint64_t) -> svuint64_t {
+pub unsafe fn svabd_u64_x(pg: svbool_t, op1: svuint64_t, op2: svuint64_t) -> svuint64_t {
     svabd_u64_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_n_u64_x(pg: svbool_t, op1: svuint64_t, op2: u64) -> svuint64_t {
+pub unsafe fn svabd_n_u64_x(pg: svbool_t, op1: svuint64_t, op2: u64) -> svuint64_t {
     svabd_u64_x(pg, op1, svdup_n_u64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_u64_z(pg: svbool_t, op1: svuint64_t, op2: svuint64_t) -> svuint64_t {
+pub unsafe fn svabd_u64_z(pg: svbool_t, op1: svuint64_t, op2: svuint64_t) -> svuint64_t {
     svabd_u64_m(pg, svsel_u64(pg, op1, svdup_n_u64(0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uabd))]
-pub fn svabd_n_u64_z(pg: svbool_t, op1: svuint64_t, op2: u64) -> svuint64_t {
+pub unsafe fn svabd_n_u64_z(pg: svbool_t, op1: svuint64_t, op2: u64) -> svuint64_t {
     svabd_u64_z(pg, op1, svdup_n_u64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fabs))]
-pub fn svabs_f32_m(inactive: svfloat32_t, pg: svbool_t, op: svfloat32_t) -> svfloat32_t {
+pub unsafe fn svabs_f32_m(inactive: svfloat32_t, pg: svbool_t, op: svfloat32_t) -> svfloat32_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svabs_f32_m(inactive: svfloat32_t, pg: svbool4_t, op: svfloat32_t) -> svfloat32_t;
@@ -1587,19 +1587,19 @@ pub fn svabs_f32_m(inactive: svfloat32_t, pg: svbool_t, op: svfloat32_t) -> svfl
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fabs))]
-pub fn svabs_f32_x(pg: svbool_t, op: svfloat32_t) -> svfloat32_t {
+pub unsafe fn svabs_f32_x(pg: svbool_t, op: svfloat32_t) -> svfloat32_t {
     svabs_f32_m(op, pg, op)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fabs))]
-pub fn svabs_f32_z(pg: svbool_t, op: svfloat32_t) -> svfloat32_t {
+pub unsafe fn svabs_f32_z(pg: svbool_t, op: svfloat32_t) -> svfloat32_t {
     svabs_f32_m(svdup_n_f32(0.0), pg, op)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fabs))]
-pub fn svabs_f64_m(inactive: svfloat64_t, pg: svbool_t, op: svfloat64_t) -> svfloat64_t {
+pub unsafe fn svabs_f64_m(inactive: svfloat64_t, pg: svbool_t, op: svfloat64_t) -> svfloat64_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svabs_f64_m(inactive: svfloat64_t, pg: svbool2_t, op: svfloat64_t) -> svfloat64_t;
@@ -1609,19 +1609,19 @@ pub fn svabs_f64_m(inactive: svfloat64_t, pg: svbool_t, op: svfloat64_t) -> svfl
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fabs))]
-pub fn svabs_f64_x(pg: svbool_t, op: svfloat64_t) -> svfloat64_t {
+pub unsafe fn svabs_f64_x(pg: svbool_t, op: svfloat64_t) -> svfloat64_t {
     svabs_f64_m(op, pg, op)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fabs))]
-pub fn svabs_f64_z(pg: svbool_t, op: svfloat64_t) -> svfloat64_t {
+pub unsafe fn svabs_f64_z(pg: svbool_t, op: svfloat64_t) -> svfloat64_t {
     svabs_f64_m(svdup_n_f64(0.0), pg, op)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(abs))]
-pub fn svabs_s8_m(inactive: svint8_t, pg: svbool_t, op: svint8_t) -> svint8_t {
+pub unsafe fn svabs_s8_m(inactive: svint8_t, pg: svbool_t, op: svint8_t) -> svint8_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svabs_s8_m(inactive: svint8_t, pg: svbool_t, op: svint8_t) -> svint8_t;
@@ -1631,19 +1631,19 @@ pub fn svabs_s8_m(inactive: svint8_t, pg: svbool_t, op: svint8_t) -> svint8_t {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(abs))]
-pub fn svabs_s8_x(pg: svbool_t, op: svint8_t) -> svint8_t {
+pub unsafe fn svabs_s8_x(pg: svbool_t, op: svint8_t) -> svint8_t {
     svabs_s8_m(op, pg, op)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(abs))]
-pub fn svabs_s8_z(pg: svbool_t, op: svint8_t) -> svint8_t {
+pub unsafe fn svabs_s8_z(pg: svbool_t, op: svint8_t) -> svint8_t {
     svabs_s8_m(svdup_n_s8(0), pg, op)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(abs))]
-pub fn svabs_s16_m(inactive: svint16_t, pg: svbool_t, op: svint16_t) -> svint16_t {
+pub unsafe fn svabs_s16_m(inactive: svint16_t, pg: svbool_t, op: svint16_t) -> svint16_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svabs_s16_m(inactive: svint16_t, pg: svbool8_t, op: svint16_t) -> svint16_t;
@@ -1653,19 +1653,19 @@ pub fn svabs_s16_m(inactive: svint16_t, pg: svbool_t, op: svint16_t) -> svint16_
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(abs))]
-pub fn svabs_s16_x(pg: svbool_t, op: svint16_t) -> svint16_t {
+pub unsafe fn svabs_s16_x(pg: svbool_t, op: svint16_t) -> svint16_t {
     svabs_s16_m(op, pg, op)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(abs))]
-pub fn svabs_s16_z(pg: svbool_t, op: svint16_t) -> svint16_t {
+pub unsafe fn svabs_s16_z(pg: svbool_t, op: svint16_t) -> svint16_t {
     svabs_s16_m(svdup_n_s16(0), pg, op)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(abs))]
-pub fn svabs_s32_m(inactive: svint32_t, pg: svbool_t, op: svint32_t) -> svint32_t {
+pub unsafe fn svabs_s32_m(inactive: svint32_t, pg: svbool_t, op: svint32_t) -> svint32_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svabs_s32_m(inactive: svint32_t, pg: svbool4_t, op: svint32_t) -> svint32_t;
@@ -1675,19 +1675,19 @@ pub fn svabs_s32_m(inactive: svint32_t, pg: svbool_t, op: svint32_t) -> svint32_
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(abs))]
-pub fn svabs_s32_x(pg: svbool_t, op: svint32_t) -> svint32_t {
+pub unsafe fn svabs_s32_x(pg: svbool_t, op: svint32_t) -> svint32_t {
     svabs_s32_m(op, pg, op)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(abs))]
-pub fn svabs_s32_z(pg: svbool_t, op: svint32_t) -> svint32_t {
+pub unsafe fn svabs_s32_z(pg: svbool_t, op: svint32_t) -> svint32_t {
     svabs_s32_m(svdup_n_s32(0), pg, op)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(abs))]
-pub fn svabs_s64_m(inactive: svint64_t, pg: svbool_t, op: svint64_t) -> svint64_t {
+pub unsafe fn svabs_s64_m(inactive: svint64_t, pg: svbool_t, op: svint64_t) -> svint64_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svabs_s64_m(inactive: svint64_t, pg: svbool2_t, op: svint64_t) -> svint64_t;
@@ -1697,19 +1697,19 @@ pub fn svabs_s64_m(inactive: svint64_t, pg: svbool_t, op: svint64_t) -> svint64_
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(abs))]
-pub fn svabs_s64_x(pg: svbool_t, op: svint64_t) -> svint64_t {
+pub unsafe fn svabs_s64_x(pg: svbool_t, op: svint64_t) -> svint64_t {
     svabs_s64_m(op, pg, op)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(abs))]
-pub fn svabs_s64_z(pg: svbool_t, op: svint64_t) -> svint64_t {
+pub unsafe fn svabs_s64_z(pg: svbool_t, op: svint64_t) -> svint64_t {
     svabs_s64_m(svdup_n_s64(0), pg, op)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(facge))]
-pub fn svacge_f32(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svbool_t {
+pub unsafe fn svacge_f32(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svbool_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svacge_f32(pg: svbool4_t, op1: svfloat32_t, op2: svfloat32_t) -> svbool4_t;
@@ -1719,13 +1719,13 @@ pub fn svacge_f32(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svbool_t 
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(facge))]
-pub fn svacge_n_f32(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svbool_t {
+pub unsafe fn svacge_n_f32(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svbool_t {
     svacge_f32(pg, op1, svdup_n_f32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(facge))]
-pub fn svacge_f64(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svbool_t {
+pub unsafe fn svacge_f64(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svbool_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svacge_f64(pg: svbool2_t, op1: svfloat64_t, op2: svfloat64_t) -> svbool2_t;
@@ -1735,13 +1735,13 @@ pub fn svacge_f64(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svbool_t 
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(facge))]
-pub fn svacge_n_f64(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svbool_t {
+pub unsafe fn svacge_n_f64(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svbool_t {
     svacge_f64(pg, op1, svdup_n_f64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(facgt))]
-pub fn svacgt_f32(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svbool_t {
+pub unsafe fn svacgt_f32(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svbool_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svacgt_f32(pg: svbool4_t, op1: svfloat32_t, op2: svfloat32_t) -> svbool4_t;
@@ -1751,13 +1751,13 @@ pub fn svacgt_f32(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svbool_t 
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(facgt))]
-pub fn svacgt_n_f32(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svbool_t {
+pub unsafe fn svacgt_n_f32(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svbool_t {
     svacgt_f32(pg, op1, svdup_n_f32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(facgt))]
-pub fn svacgt_f64(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svbool_t {
+pub unsafe fn svacgt_f64(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svbool_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svacgt_f64(pg: svbool2_t, op1: svfloat64_t, op2: svfloat64_t) -> svbool2_t;
@@ -1767,61 +1767,61 @@ pub fn svacgt_f64(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svbool_t 
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(facgt))]
-pub fn svacgt_n_f64(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svbool_t {
+pub unsafe fn svacgt_n_f64(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svbool_t {
     svacgt_f64(pg, op1, svdup_n_f64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(facge))]
-pub fn svacle_f32(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svbool_t {
+pub unsafe fn svacle_f32(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svbool_t {
     svacge_f32(pg, op2, op1)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(facge))]
-pub fn svacle_n_f32(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svbool_t {
+pub unsafe fn svacle_n_f32(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svbool_t {
     svacle_f32(pg, op1, svdup_n_f32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(facge))]
-pub fn svacle_f64(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svbool_t {
+pub unsafe fn svacle_f64(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svbool_t {
     svacge_f64(pg, op2, op1)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(facge))]
-pub fn svacle_n_f64(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svbool_t {
+pub unsafe fn svacle_n_f64(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svbool_t {
     svacle_f64(pg, op1, svdup_n_f64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(facgt))]
-pub fn svaclt_f32(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svbool_t {
+pub unsafe fn svaclt_f32(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svbool_t {
     svacgt_f32(pg, op2, op1)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(facgt))]
-pub fn svaclt_n_f32(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svbool_t {
+pub unsafe fn svaclt_n_f32(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svbool_t {
     svaclt_f32(pg, op1, svdup_n_f32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(facgt))]
-pub fn svaclt_f64(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svbool_t {
+pub unsafe fn svaclt_f64(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svbool_t {
     svacgt_f64(pg, op2, op1)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(facgt))]
-pub fn svaclt_n_f64(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svbool_t {
+pub unsafe fn svaclt_n_f64(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svbool_t {
     svaclt_f64(pg, op1, svdup_n_f64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fadd))]
-pub fn svadd_f32_m(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svfloat32_t {
+pub unsafe fn svadd_f32_m(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svfloat32_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svadd_f32_m(pg: svbool4_t, op1: svfloat32_t, op2: svfloat32_t) -> svfloat32_t;
@@ -1831,37 +1831,37 @@ pub fn svadd_f32_m(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svfloat3
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fadd))]
-pub fn svadd_n_f32_m(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svfloat32_t {
+pub unsafe fn svadd_n_f32_m(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svfloat32_t {
     svadd_f32_m(pg, op1, svdup_n_f32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fadd))]
-pub fn svadd_f32_x(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svfloat32_t {
+pub unsafe fn svadd_f32_x(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svfloat32_t {
     svadd_f32_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fadd))]
-pub fn svadd_n_f32_x(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svfloat32_t {
+pub unsafe fn svadd_n_f32_x(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svfloat32_t {
     svadd_f32_x(pg, op1, svdup_n_f32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fadd))]
-pub fn svadd_f32_z(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svfloat32_t {
+pub unsafe fn svadd_f32_z(pg: svbool_t, op1: svfloat32_t, op2: svfloat32_t) -> svfloat32_t {
     svadd_f32_m(pg, svsel_f32(pg, op1, svdup_n_f32(0.0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fadd))]
-pub fn svadd_n_f32_z(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svfloat32_t {
+pub unsafe fn svadd_n_f32_z(pg: svbool_t, op1: svfloat32_t, op2: f32) -> svfloat32_t {
     svadd_f32_z(pg, op1, svdup_n_f32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fadd))]
-pub fn svadd_f64_m(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svfloat64_t {
+pub unsafe fn svadd_f64_m(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svfloat64_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svadd_f64_m(pg: svbool2_t, op1: svfloat64_t, op2: svfloat64_t) -> svfloat64_t;
@@ -1871,37 +1871,37 @@ pub fn svadd_f64_m(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svfloat6
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fadd))]
-pub fn svadd_n_f64_m(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svfloat64_t {
+pub unsafe fn svadd_n_f64_m(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svfloat64_t {
     svadd_f64_m(pg, op1, svdup_n_f64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fadd))]
-pub fn svadd_f64_x(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svfloat64_t {
+pub unsafe fn svadd_f64_x(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svfloat64_t {
     svadd_f64_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fadd))]
-pub fn svadd_n_f64_x(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svfloat64_t {
+pub unsafe fn svadd_n_f64_x(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svfloat64_t {
     svadd_f64_x(pg, op1, svdup_n_f64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fadd))]
-pub fn svadd_f64_z(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svfloat64_t {
+pub unsafe fn svadd_f64_z(pg: svbool_t, op1: svfloat64_t, op2: svfloat64_t) -> svfloat64_t {
     svadd_f64_m(pg, svsel_f64(pg, op1, svdup_n_f64(0.0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fadd))]
-pub fn svadd_n_f64_z(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svfloat64_t {
+pub unsafe fn svadd_n_f64_z(pg: svbool_t, op1: svfloat64_t, op2: f64) -> svfloat64_t {
     svadd_f64_z(pg, op1, svdup_n_f64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_s8_m(pg: svbool_t, op1: svint8_t, op2: svint8_t) -> svint8_t {
+pub unsafe fn svadd_s8_m(pg: svbool_t, op1: svint8_t, op2: svint8_t) -> svint8_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svadd_s8_m(pg: svbool_t, op1: svint8_t, op2: svint8_t) -> svint8_t;
@@ -1911,37 +1911,37 @@ pub fn svadd_s8_m(pg: svbool_t, op1: svint8_t, op2: svint8_t) -> svint8_t {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_s8_m(pg: svbool_t, op1: svint8_t, op2: i8) -> svint8_t {
+pub unsafe fn svadd_n_s8_m(pg: svbool_t, op1: svint8_t, op2: i8) -> svint8_t {
     svadd_s8_m(pg, op1, svdup_n_s8(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_s8_x(pg: svbool_t, op1: svint8_t, op2: svint8_t) -> svint8_t {
+pub unsafe fn svadd_s8_x(pg: svbool_t, op1: svint8_t, op2: svint8_t) -> svint8_t {
     svadd_s8_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_s8_x(pg: svbool_t, op1: svint8_t, op2: i8) -> svint8_t {
+pub unsafe fn svadd_n_s8_x(pg: svbool_t, op1: svint8_t, op2: i8) -> svint8_t {
     svadd_s8_x(pg, op1, svdup_n_s8(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_s8_z(pg: svbool_t, op1: svint8_t, op2: svint8_t) -> svint8_t {
+pub unsafe fn svadd_s8_z(pg: svbool_t, op1: svint8_t, op2: svint8_t) -> svint8_t {
     svadd_s8_m(pg, svsel_s8(pg, op1, svdup_n_s8(0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_s8_z(pg: svbool_t, op1: svint8_t, op2: i8) -> svint8_t {
+pub unsafe fn svadd_n_s8_z(pg: svbool_t, op1: svint8_t, op2: i8) -> svint8_t {
     svadd_s8_z(pg, op1, svdup_n_s8(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_s16_m(pg: svbool_t, op1: svint16_t, op2: svint16_t) -> svint16_t {
+pub unsafe fn svadd_s16_m(pg: svbool_t, op1: svint16_t, op2: svint16_t) -> svint16_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svadd_s16_m(pg: svbool8_t, op1: svint16_t, op2: svint16_t) -> svint16_t;
@@ -1951,37 +1951,37 @@ pub fn svadd_s16_m(pg: svbool_t, op1: svint16_t, op2: svint16_t) -> svint16_t {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_s16_m(pg: svbool_t, op1: svint16_t, op2: i16) -> svint16_t {
+pub unsafe fn svadd_n_s16_m(pg: svbool_t, op1: svint16_t, op2: i16) -> svint16_t {
     svadd_s16_m(pg, op1, svdup_n_s16(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_s16_x(pg: svbool_t, op1: svint16_t, op2: svint16_t) -> svint16_t {
+pub unsafe fn svadd_s16_x(pg: svbool_t, op1: svint16_t, op2: svint16_t) -> svint16_t {
     svadd_s16_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_s16_x(pg: svbool_t, op1: svint16_t, op2: i16) -> svint16_t {
+pub unsafe fn svadd_n_s16_x(pg: svbool_t, op1: svint16_t, op2: i16) -> svint16_t {
     svadd_s16_x(pg, op1, svdup_n_s16(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_s16_z(pg: svbool_t, op1: svint16_t, op2: svint16_t) -> svint16_t {
+pub unsafe fn svadd_s16_z(pg: svbool_t, op1: svint16_t, op2: svint16_t) -> svint16_t {
     svadd_s16_m(pg, svsel_s16(pg, op1, svdup_n_s16(0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_s16_z(pg: svbool_t, op1: svint16_t, op2: i16) -> svint16_t {
+pub unsafe fn svadd_n_s16_z(pg: svbool_t, op1: svint16_t, op2: i16) -> svint16_t {
     svadd_s16_z(pg, op1, svdup_n_s16(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_s32_m(pg: svbool_t, op1: svint32_t, op2: svint32_t) -> svint32_t {
+pub unsafe fn svadd_s32_m(pg: svbool_t, op1: svint32_t, op2: svint32_t) -> svint32_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svadd_s32_m(pg: svbool4_t, op1: svint32_t, op2: svint32_t) -> svint32_t;
@@ -1991,37 +1991,37 @@ pub fn svadd_s32_m(pg: svbool_t, op1: svint32_t, op2: svint32_t) -> svint32_t {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_s32_m(pg: svbool_t, op1: svint32_t, op2: i32) -> svint32_t {
+pub unsafe fn svadd_n_s32_m(pg: svbool_t, op1: svint32_t, op2: i32) -> svint32_t {
     svadd_s32_m(pg, op1, svdup_n_s32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_s32_x(pg: svbool_t, op1: svint32_t, op2: svint32_t) -> svint32_t {
+pub unsafe fn svadd_s32_x(pg: svbool_t, op1: svint32_t, op2: svint32_t) -> svint32_t {
     svadd_s32_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_s32_x(pg: svbool_t, op1: svint32_t, op2: i32) -> svint32_t {
+pub unsafe fn svadd_n_s32_x(pg: svbool_t, op1: svint32_t, op2: i32) -> svint32_t {
     svadd_s32_x(pg, op1, svdup_n_s32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_s32_z(pg: svbool_t, op1: svint32_t, op2: svint32_t) -> svint32_t {
+pub unsafe fn svadd_s32_z(pg: svbool_t, op1: svint32_t, op2: svint32_t) -> svint32_t {
     svadd_s32_m(pg, svsel_s32(pg, op1, svdup_n_s32(0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_s32_z(pg: svbool_t, op1: svint32_t, op2: i32) -> svint32_t {
+pub unsafe fn svadd_n_s32_z(pg: svbool_t, op1: svint32_t, op2: i32) -> svint32_t {
     svadd_s32_z(pg, op1, svdup_n_s32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_s64_m(pg: svbool_t, op1: svint64_t, op2: svint64_t) -> svint64_t {
+pub unsafe fn svadd_s64_m(pg: svbool_t, op1: svint64_t, op2: svint64_t) -> svint64_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svadd_s64_m(pg: svbool2_t, op1: svint64_t, op2: svint64_t) -> svint64_t;
@@ -2031,181 +2031,181 @@ pub fn svadd_s64_m(pg: svbool_t, op1: svint64_t, op2: svint64_t) -> svint64_t {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_s64_m(pg: svbool_t, op1: svint64_t, op2: i64) -> svint64_t {
+pub unsafe fn svadd_n_s64_m(pg: svbool_t, op1: svint64_t, op2: i64) -> svint64_t {
     svadd_s64_m(pg, op1, svdup_n_s64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_s64_x(pg: svbool_t, op1: svint64_t, op2: svint64_t) -> svint64_t {
+pub unsafe fn svadd_s64_x(pg: svbool_t, op1: svint64_t, op2: svint64_t) -> svint64_t {
     svadd_s64_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_s64_x(pg: svbool_t, op1: svint64_t, op2: i64) -> svint64_t {
+pub unsafe fn svadd_n_s64_x(pg: svbool_t, op1: svint64_t, op2: i64) -> svint64_t {
     svadd_s64_x(pg, op1, svdup_n_s64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_s64_z(pg: svbool_t, op1: svint64_t, op2: svint64_t) -> svint64_t {
+pub unsafe fn svadd_s64_z(pg: svbool_t, op1: svint64_t, op2: svint64_t) -> svint64_t {
     svadd_s64_m(pg, svsel_s64(pg, op1, svdup_n_s64(0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_s64_z(pg: svbool_t, op1: svint64_t, op2: i64) -> svint64_t {
+pub unsafe fn svadd_n_s64_z(pg: svbool_t, op1: svint64_t, op2: i64) -> svint64_t {
     svadd_s64_z(pg, op1, svdup_n_s64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_u8_m(pg: svbool_t, op1: svuint8_t, op2: svuint8_t) -> svuint8_t {
+pub unsafe fn svadd_u8_m(pg: svbool_t, op1: svuint8_t, op2: svuint8_t) -> svuint8_t {
     unsafe { svadd_s8_m(pg, op1.as_signed(), op2.as_signed()).as_unsigned() }
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_u8_m(pg: svbool_t, op1: svuint8_t, op2: u8) -> svuint8_t {
+pub unsafe fn svadd_n_u8_m(pg: svbool_t, op1: svuint8_t, op2: u8) -> svuint8_t {
     svadd_u8_m(pg, op1, svdup_n_u8(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_u8_x(pg: svbool_t, op1: svuint8_t, op2: svuint8_t) -> svuint8_t {
+pub unsafe fn svadd_u8_x(pg: svbool_t, op1: svuint8_t, op2: svuint8_t) -> svuint8_t {
     svadd_u8_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_u8_x(pg: svbool_t, op1: svuint8_t, op2: u8) -> svuint8_t {
+pub unsafe fn svadd_n_u8_x(pg: svbool_t, op1: svuint8_t, op2: u8) -> svuint8_t {
     svadd_u8_x(pg, op1, svdup_n_u8(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_u8_z(pg: svbool_t, op1: svuint8_t, op2: svuint8_t) -> svuint8_t {
+pub unsafe fn svadd_u8_z(pg: svbool_t, op1: svuint8_t, op2: svuint8_t) -> svuint8_t {
     svadd_u8_m(pg, svsel_u8(pg, op1, svdup_n_u8(0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_u8_z(pg: svbool_t, op1: svuint8_t, op2: u8) -> svuint8_t {
+pub unsafe fn svadd_n_u8_z(pg: svbool_t, op1: svuint8_t, op2: u8) -> svuint8_t {
     svadd_u8_z(pg, op1, svdup_n_u8(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_u16_m(pg: svbool_t, op1: svuint16_t, op2: svuint16_t) -> svuint16_t {
+pub unsafe fn svadd_u16_m(pg: svbool_t, op1: svuint16_t, op2: svuint16_t) -> svuint16_t {
     unsafe { svadd_s16_m(pg, op1.as_signed(), op2.as_signed()).as_unsigned() }
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_u16_m(pg: svbool_t, op1: svuint16_t, op2: u16) -> svuint16_t {
+pub unsafe fn svadd_n_u16_m(pg: svbool_t, op1: svuint16_t, op2: u16) -> svuint16_t {
     svadd_u16_m(pg, op1, svdup_n_u16(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_u16_x(pg: svbool_t, op1: svuint16_t, op2: svuint16_t) -> svuint16_t {
+pub unsafe fn svadd_u16_x(pg: svbool_t, op1: svuint16_t, op2: svuint16_t) -> svuint16_t {
     svadd_u16_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_u16_x(pg: svbool_t, op1: svuint16_t, op2: u16) -> svuint16_t {
+pub unsafe fn svadd_n_u16_x(pg: svbool_t, op1: svuint16_t, op2: u16) -> svuint16_t {
     svadd_u16_x(pg, op1, svdup_n_u16(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_u16_z(pg: svbool_t, op1: svuint16_t, op2: svuint16_t) -> svuint16_t {
+pub unsafe fn svadd_u16_z(pg: svbool_t, op1: svuint16_t, op2: svuint16_t) -> svuint16_t {
     svadd_u16_m(pg, svsel_u16(pg, op1, svdup_n_u16(0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_u16_z(pg: svbool_t, op1: svuint16_t, op2: u16) -> svuint16_t {
+pub unsafe fn svadd_n_u16_z(pg: svbool_t, op1: svuint16_t, op2: u16) -> svuint16_t {
     svadd_u16_z(pg, op1, svdup_n_u16(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_u32_m(pg: svbool_t, op1: svuint32_t, op2: svuint32_t) -> svuint32_t {
+pub unsafe fn svadd_u32_m(pg: svbool_t, op1: svuint32_t, op2: svuint32_t) -> svuint32_t {
     unsafe { svadd_s32_m(pg, op1.as_signed(), op2.as_signed()).as_unsigned() }
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_u32_m(pg: svbool_t, op1: svuint32_t, op2: u32) -> svuint32_t {
+pub unsafe fn svadd_n_u32_m(pg: svbool_t, op1: svuint32_t, op2: u32) -> svuint32_t {
     svadd_u32_m(pg, op1, svdup_n_u32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_u32_x(pg: svbool_t, op1: svuint32_t, op2: svuint32_t) -> svuint32_t {
+pub unsafe fn svadd_u32_x(pg: svbool_t, op1: svuint32_t, op2: svuint32_t) -> svuint32_t {
     svadd_u32_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_u32_x(pg: svbool_t, op1: svuint32_t, op2: u32) -> svuint32_t {
+pub unsafe fn svadd_n_u32_x(pg: svbool_t, op1: svuint32_t, op2: u32) -> svuint32_t {
     svadd_u32_x(pg, op1, svdup_n_u32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_u32_z(pg: svbool_t, op1: svuint32_t, op2: svuint32_t) -> svuint32_t {
+pub unsafe fn svadd_u32_z(pg: svbool_t, op1: svuint32_t, op2: svuint32_t) -> svuint32_t {
     svadd_u32_m(pg, svsel_u32(pg, op1, svdup_n_u32(0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_u32_z(pg: svbool_t, op1: svuint32_t, op2: u32) -> svuint32_t {
+pub unsafe fn svadd_n_u32_z(pg: svbool_t, op1: svuint32_t, op2: u32) -> svuint32_t {
     svadd_u32_z(pg, op1, svdup_n_u32(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_u64_m(pg: svbool_t, op1: svuint64_t, op2: svuint64_t) -> svuint64_t {
+pub unsafe fn svadd_u64_m(pg: svbool_t, op1: svuint64_t, op2: svuint64_t) -> svuint64_t {
     unsafe { svadd_s64_m(pg, op1.as_signed(), op2.as_signed()).as_unsigned() }
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_u64_m(pg: svbool_t, op1: svuint64_t, op2: u64) -> svuint64_t {
+pub unsafe fn svadd_n_u64_m(pg: svbool_t, op1: svuint64_t, op2: u64) -> svuint64_t {
     svadd_u64_m(pg, op1, svdup_n_u64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_u64_x(pg: svbool_t, op1: svuint64_t, op2: svuint64_t) -> svuint64_t {
+pub unsafe fn svadd_u64_x(pg: svbool_t, op1: svuint64_t, op2: svuint64_t) -> svuint64_t {
     svadd_u64_m(pg, op1, op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_u64_x(pg: svbool_t, op1: svuint64_t, op2: u64) -> svuint64_t {
+pub unsafe fn svadd_n_u64_x(pg: svbool_t, op1: svuint64_t, op2: u64) -> svuint64_t {
     svadd_u64_x(pg, op1, svdup_n_u64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_u64_z(pg: svbool_t, op1: svuint64_t, op2: svuint64_t) -> svuint64_t {
+pub unsafe fn svadd_u64_z(pg: svbool_t, op1: svuint64_t, op2: svuint64_t) -> svuint64_t {
     svadd_u64_m(pg, svsel_u64(pg, op1, svdup_n_u64(0)), op2)
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(add))]
-pub fn svadd_n_u64_z(pg: svbool_t, op1: svuint64_t, op2: u64) -> svuint64_t {
+pub unsafe fn svadd_n_u64_z(pg: svbool_t, op1: svuint64_t, op2: u64) -> svuint64_t {
     svadd_u64_z(pg, op1, svdup_n_u64(op2))
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fadda))]
-pub fn svadda_f32(pg: svbool_t, initial: f32, op: svfloat32_t) -> f32 {
+pub unsafe fn svadda_f32(pg: svbool_t, initial: f32, op: svfloat32_t) -> f32 {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svadda_f32(pg: svbool4_t, initial: f32, op: svfloat32_t) -> f32;
@@ -2215,7 +2215,7 @@ pub fn svadda_f32(pg: svbool_t, initial: f32, op: svfloat32_t) -> f32 {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(fadda))]
-pub fn svadda_f64(pg: svbool_t, initial: f64, op: svfloat64_t) -> f64 {
+pub unsafe fn svadda_f64(pg: svbool_t, initial: f64, op: svfloat64_t) -> f64 {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svadda_f64(pg: svbool2_t, initial: f64, op: svfloat64_t) -> f64;
@@ -2225,7 +2225,7 @@ pub fn svadda_f64(pg: svbool_t, initial: f64, op: svfloat64_t) -> f64 {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(faddv))]
-pub fn svaddv_f32(pg: svbool_t, op: svfloat32_t) -> f32 {
+pub unsafe fn svaddv_f32(pg: svbool_t, op: svfloat32_t) -> f32 {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svaddv_f32(pg: svbool4_t, op: svfloat32_t) -> f32;
@@ -2235,7 +2235,7 @@ pub fn svaddv_f32(pg: svbool_t, op: svfloat32_t) -> f32 {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(faddv))]
-pub fn svaddv_f64(pg: svbool_t, op: svfloat64_t) -> f64 {
+pub unsafe fn svaddv_f64(pg: svbool_t, op: svfloat64_t) -> f64 {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svaddv_f64(pg: svbool2_t, op: svfloat64_t) -> f64;
@@ -2245,7 +2245,7 @@ pub fn svaddv_f64(pg: svbool_t, op: svfloat64_t) -> f64 {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uaddv))]
-pub fn svaddv_s64(pg: svbool_t, op: svint64_t) -> i64 {
+pub unsafe fn svaddv_s64(pg: svbool_t, op: svint64_t) -> i64 {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svaddv_s64(pg: svbool2_t, op: svint64_t) -> i64;
@@ -2255,7 +2255,7 @@ pub fn svaddv_s64(pg: svbool_t, op: svint64_t) -> i64 {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uaddv))]
-pub fn svaddv_u64(pg: svbool_t, op: svuint64_t) -> u64 {
+pub unsafe fn svaddv_u64(pg: svbool_t, op: svuint64_t) -> u64 {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svaddv_u64(pg: svbool2_t, op: svint64_t) -> i64;
@@ -2265,7 +2265,7 @@ pub fn svaddv_u64(pg: svbool_t, op: svuint64_t) -> u64 {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(saddv))]
-pub fn svaddv_s8(pg: svbool_t, op: svint8_t) -> i64 {
+pub unsafe fn svaddv_s8(pg: svbool_t, op: svint8_t) -> i64 {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svaddv_s8(pg: svbool_t, op: svint8_t) -> i64;
@@ -2275,7 +2275,7 @@ pub fn svaddv_s8(pg: svbool_t, op: svint8_t) -> i64 {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(saddv))]
-pub fn svaddv_s16(pg: svbool_t, op: svint16_t) -> i64 {
+pub unsafe fn svaddv_s16(pg: svbool_t, op: svint16_t) -> i64 {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svaddv_s16(pg: svbool8_t, op: svint16_t) -> i64;
@@ -2285,7 +2285,7 @@ pub fn svaddv_s16(pg: svbool_t, op: svint16_t) -> i64 {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(saddv))]
-pub fn svaddv_s32(pg: svbool_t, op: svint32_t) -> i64 {
+pub unsafe fn svaddv_s32(pg: svbool_t, op: svint32_t) -> i64 {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svaddv_s32(pg: svbool4_t, op: svint32_t) -> i64;
@@ -2295,7 +2295,7 @@ pub fn svaddv_s32(pg: svbool_t, op: svint32_t) -> i64 {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uaddv))]
-pub fn svaddv_u8(pg: svbool_t, op: svuint8_t) -> u64 {
+pub unsafe fn svaddv_u8(pg: svbool_t, op: svuint8_t) -> u64 {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svaddv_u8(pg: svbool_t, op: svint8_t) -> i64;
@@ -2305,7 +2305,7 @@ pub fn svaddv_u8(pg: svbool_t, op: svuint8_t) -> u64 {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uaddv))]
-pub fn svaddv_u16(pg: svbool_t, op: svuint16_t) -> u64 {
+pub unsafe fn svaddv_u16(pg: svbool_t, op: svuint16_t) -> u64 {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svaddv_u16(pg: svbool8_t, op: svint16_t) -> i64;
@@ -2315,7 +2315,7 @@ pub fn svaddv_u16(pg: svbool_t, op: svuint16_t) -> u64 {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(uaddv))]
-pub fn svaddv_u32(pg: svbool_t, op: svuint32_t) -> u64 {
+pub unsafe fn svaddv_u32(pg: svbool_t, op: svuint32_t) -> u64 {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svaddv_u32(pg: svbool4_t, op: svint32_t) -> i64;
@@ -2325,7 +2325,7 @@ pub fn svaddv_u32(pg: svbool_t, op: svuint32_t) -> u64 {
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(adr))]
-pub fn svadrb_u32base_s32offset(bases: svuint32_t, offsets: svint32_t) -> svuint32_t {
+pub unsafe fn svadrb_u32base_s32offset(bases: svuint32_t, offsets: svint32_t) -> svuint32_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svadrb_u32base_s32offset(bases: svint32_t, offsets: svint32_t) -> svint32_t;
@@ -2335,7 +2335,7 @@ pub fn svadrb_u32base_s32offset(bases: svuint32_t, offsets: svint32_t) -> svuint
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(adr))]
-pub fn svadrh_u32base_s32index(bases: svuint32_t, indices: svint32_t) -> svuint32_t {
+pub unsafe fn svadrh_u32base_s32index(bases: svuint32_t, indices: svint32_t) -> svuint32_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svadrh_u32base_s32index(bases: svint32_t, indices: svint32_t) -> svint32_t;
@@ -2345,7 +2345,7 @@ pub fn svadrh_u32base_s32index(bases: svuint32_t, indices: svint32_t) -> svuint3
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(adr))]
-pub fn svadrw_u32base_s32index(bases: svuint32_t, indices: svint32_t) -> svuint32_t {
+pub unsafe fn svadrw_u32base_s32index(bases: svuint32_t, indices: svint32_t) -> svuint32_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svadrw_u32base_s32index(bases: svint32_t, indices: svint32_t) -> svint32_t;
@@ -2355,7 +2355,7 @@ pub fn svadrw_u32base_s32index(bases: svuint32_t, indices: svint32_t) -> svuint3
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(adr))]
-pub fn svadrd_u32base_s32index(bases: svuint32_t, indices: svint32_t) -> svuint32_t {
+pub unsafe fn svadrd_u32base_s32index(bases: svuint32_t, indices: svint32_t) -> svuint32_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svadrd_u32base_s32index(bases: svint32_t, indices: svint32_t) -> svint32_t;
@@ -2365,31 +2365,31 @@ pub fn svadrd_u32base_s32index(bases: svuint32_t, indices: svint32_t) -> svuint3
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(adr))]
-pub fn svadrb_u32base_u32offset(bases: svuint32_t, offsets: svuint32_t) -> svuint32_t {
+pub unsafe fn svadrb_u32base_u32offset(bases: svuint32_t, offsets: svuint32_t) -> svuint32_t {
     unsafe { svadrb_u32base_s32offset(bases, offsets.as_signed()) }
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(adr))]
-pub fn svadrh_u32base_u32index(bases: svuint32_t, indices: svuint32_t) -> svuint32_t {
+pub unsafe fn svadrh_u32base_u32index(bases: svuint32_t, indices: svuint32_t) -> svuint32_t {
     unsafe { svadrh_u32base_s32index(bases, indices.as_signed()) }
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(adr))]
-pub fn svadrw_u32base_u32index(bases: svuint32_t, indices: svuint32_t) -> svuint32_t {
+pub unsafe fn svadrw_u32base_u32index(bases: svuint32_t, indices: svuint32_t) -> svuint32_t {
     unsafe { svadrw_u32base_s32index(bases, indices.as_signed()) }
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(adr))]
-pub fn svadrd_u32base_u32index(bases: svuint32_t, indices: svuint32_t) -> svuint32_t {
+pub unsafe fn svadrd_u32base_u32index(bases: svuint32_t, indices: svuint32_t) -> svuint32_t {
     unsafe { svadrd_u32base_s32index(bases, indices.as_signed()) }
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(adr))]
-pub fn svadrb_u64base_s64offset(bases: svuint64_t, offsets: svint64_t) -> svuint64_t {
+pub unsafe fn svadrb_u64base_s64offset(bases: svuint64_t, offsets: svint64_t) -> svuint64_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svadrb_u64base_s64offset(bases: svint64_t, offsets: svint64_t) -> svint64_t;
@@ -2399,7 +2399,7 @@ pub fn svadrb_u64base_s64offset(bases: svuint64_t, offsets: svint64_t) -> svuint
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(adr))]
-pub fn svadrh_u64base_s64index(bases: svuint64_t, indices: svint64_t) -> svuint64_t {
+pub unsafe fn svadrh_u64base_s64index(bases: svuint64_t, indices: svint64_t) -> svuint64_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svadrh_u64base_s64index(bases: svint64_t, indices: svint64_t) -> svint64_t;
@@ -2409,7 +2409,7 @@ pub fn svadrh_u64base_s64index(bases: svuint64_t, indices: svint64_t) -> svuint6
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(adr))]
-pub fn svadrw_u64base_s64index(bases: svuint64_t, indices: svint64_t) -> svuint64_t {
+pub unsafe fn svadrw_u64base_s64index(bases: svuint64_t, indices: svint64_t) -> svuint64_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svadrw_u64base_s64index(bases: svint64_t, indices: svint64_t) -> svint64_t;
@@ -2419,7 +2419,7 @@ pub fn svadrw_u64base_s64index(bases: svuint64_t, indices: svint64_t) -> svuint6
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(adr))]
-pub fn svadrd_u64base_s64index(bases: svuint64_t, indices: svint64_t) -> svuint64_t {
+pub unsafe fn svadrd_u64base_s64index(bases: svuint64_t, indices: svint64_t) -> svuint64_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svadrd_u64base_s64index(bases: svint64_t, indices: svint64_t) -> svint64_t;
@@ -2429,31 +2429,31 @@ pub fn svadrd_u64base_s64index(bases: svuint64_t, indices: svint64_t) -> svuint6
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(adr))]
-pub fn svadrb_u64base_u64offset(bases: svuint64_t, offsets: svuint64_t) -> svuint64_t {
+pub unsafe fn svadrb_u64base_u64offset(bases: svuint64_t, offsets: svuint64_t) -> svuint64_t {
     unsafe { svadrb_u64base_s64offset(bases, offsets.as_signed()) }
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(adr))]
-pub fn svadrh_u64base_u64index(bases: svuint64_t, indices: svuint64_t) -> svuint64_t {
+pub unsafe fn svadrh_u64base_u64index(bases: svuint64_t, indices: svuint64_t) -> svuint64_t {
     unsafe { svadrh_u64base_s64index(bases, indices.as_signed()) }
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(adr))]
-pub fn svadrw_u64base_u64index(bases: svuint64_t, indices: svuint64_t) -> svuint64_t {
+pub unsafe fn svadrw_u64base_u64index(bases: svuint64_t, indices: svuint64_t) -> svuint64_t {
     unsafe { svadrw_u64base_s64index(bases, indices.as_signed()) }
 }
 #[inline]
 #[target_feature(enable = "sve")]
 //#[cfg_attr(test, assert_instr(adr))]
-pub fn svadrd_u64base_u64index(bases: svuint64_t, indices: svuint64_t) -> svuint64_t {
+pub unsafe fn svadrd_u64base_u64index(bases: svuint64_t, indices: svuint64_t) -> svuint64_t {
     unsafe { svadrd_u64base_s64index(bases, indices.as_signed()) }
 }
 #[inline]
 #[target_feature(enable = "sve")]
 ////#[cfg_attr(test, assert_instr(and))]
-pub fn svand_b_z(pg: svbool_t, op1: svbool_t, op2: svbool_t) -> svbool_t {
+pub unsafe fn svand_b_z(pg: svbool_t, op1: svbool_t, op2: svbool_t) -> svbool_t {
     extern "C" {
         #[cfg_attr(target_arch = "aarch64", feature(link_llvm_intrinsics))]
         fn _svand_b_z(pg: svbool_t, op1: svbool_t, op2: svbool_t) -> svbool_t;
